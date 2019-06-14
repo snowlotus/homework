@@ -1,0 +1,19 @@
+{
+  "name": "homework2-backbone-todomvc",
+  "version": "1.0.0",
+  "description": "todomvc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "backbone": "^1.4.0",
+    "backbone.localstorage": "^2.0.2",
+    "jquery": "^3.4.1",
+    "todomvc-app-css": "^2.2.0",
+    "todomvc-common": "^1.0.5",
+    "underscore": "^1.9.1"
+  }
+}
