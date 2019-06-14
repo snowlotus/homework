@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "backbone": "^1.4.0",
-    "backbone.localstorage": "^2.0.2",
+    "backbone.localstorage": "^1.1.16",
     "jquery": "^3.4.1",
     "todomvc-app-css": "^2.2.0",
     "todomvc-common": "^1.0.5",
