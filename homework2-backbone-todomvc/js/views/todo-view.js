@@ -1,26 +1,39 @@
-var app = app || {}
+/*global Backbone, jQuery, _, ENTER_KEY, ESC_KEY */
+var app = app || {};
 
-(function($){
+(function ($) {
+  'use strict';
     app.TodoView = Backbone.View.extend({
       tagName:'li',
       template:_.template($("#item-template").html()),
-      events:{//TODO 点击某个html标签 触发某个事件行为
+      events:{
         'click .toggle':'toggleCompleted',
         'dbclick label':'edit',
         'click .destroy':'clear',
         'blur .edit':'close',
-        'keypress .edit':'revertOnEscape',
-        'keydown .edit':'updateOnEnter'
+        'keypress .edit':'updateOnEnter',//keypress按下字符键
+        'keydown .edit':'revertOnEscape' //keydown表示按下任何键（不一定会有字符产生）；处理按下退出键的情况
       },
       initialize:function(){
-        //TODO
-        this.listenTo(this.model,'change',this.render)
+        //WHY
+        this.listenTo(this.model,'change',this.render);
+        this.listenTo(this.model,'destroy',this.remove);//WHY remove在哪里定义的
+        this.listenTo(this.model,'visible',this.toggleVisible);
       },
       render:function(){
-        //TODO
-        this.$el.html(this.template(this.model.toJSON()))
+        //WHY
+        if(this.model.changed.id!==undefined){
+          return 
+        }
+
+        //WHY
+        this.$el.html(this.template(this.model.toJSON()));
+        this.$el.toggleClass('completed',this.model.get('completed'));
+        this.toggleVisible(); 
+        this.$input=this.$('.edit');
+        return this;
       },
-      toogleVisible:function(){
+      toggleVisible:function(){
         this.$el.toggleClass('hidden',this.isHidden())
       },
       isHidden:function(){
@@ -38,7 +51,7 @@ var app = app || {}
         this.$input[0].setSelectionRange(textLength,textLength)
       },
       clear:function(){
-        this.model.destory();//内置方法，在模型上触发 "destroy" 事件，该事件将会冒泡到任何包含这个模型的集合中
+        this.model.destroy();//内置方法，在模型上触发 "destroy" 事件，该事件将会冒泡到任何包含这个模型的集合中
       },
       close:function(){
         var value =this.$input.val();
@@ -57,6 +70,18 @@ var app = app || {}
         this.$el.removeClass('editing')
 
       },
+      updateOnEnter:function(e){
+        //WHY 不是说keypress不会对非字符的键产生反应吗？
+        if(e.which===ENTER_KEY){
+          this.close();
+        }
+      },
+      revertOnEscape:function(e){
+        if(e.which===ESC_KEY){
+          this.$el.removeClass('editing')
+          this.$input.val(this.model.get('title'))
+        }
+      }
 
-    }) 
-})(jQuery)
+    }); 
+})(jQuery);

@@ -6,7 +6,7 @@ var app = app|| {};
       title:'',
       completed:false
     },
-    toogle:function(){ //自定义方法
+    toggle:function(){ //自定义方法
       this.save({
         completed:!this.get("completed")
       })
