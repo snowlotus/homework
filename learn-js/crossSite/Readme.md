@@ -6,10 +6,9 @@
 
 ## 跨域的限制
 
-1.Cookie、localstorage、indexDB无法读取
-2.DOM无法取得
-3.ajax网络请求无法发出
-
+    1. Cookie、localstorage、indexDB无法读取
+    2. DOM无法取得
+    3. ajax网络请求无法发出
 
 ### 步骤
 
@@ -24,8 +23,8 @@
 
 * 例子是下面这几个
 
-    1. http://y.localhost.com:7001/public/1.html
-    2. http://y.localhost.com:7001/public/2.html
+    1. http://y.localhost.com:7001/public/1.html jsonp
+    2. http://y.localhost.com:7001/public/2.html 
     3. http://y.localhost.com:7001/public/3.html
     4. http://y.localhost.com:7001/public/4.html
     5. http://y.localhost.com:7001/public/5.html
