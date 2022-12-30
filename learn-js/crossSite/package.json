@@ -22,7 +22,7 @@
   "homepage": "https://github.com/FE-star/showcase1#readme",
   "devDependencies": {
     "egg": "^1.7.0",
-    "egg-bin": "^4.1.0",
+    "egg-bin": "^4.20.0",
     "egg-static": "^1.4.1"
   }
 }
